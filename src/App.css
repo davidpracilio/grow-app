@@ -6,7 +6,7 @@
 }
 
 body {
-  margin: 3rem 6rem;
+  margin: 2rem 6rem;
   background-color: #00C49A;
   color: #FFFFFF;
 }
@@ -15,6 +15,28 @@ body {
   min-width: 370px;
   max-width: 1366px;
   margin: auto;
+}
+
+.banner {
+  padding: 52px;
+}
+
+.banner h1 {
+  font-size: 5rem;
+}
+
+.banner p {
+  padding-top: 16px;
+  font-size: 1.1rem;
+  max-width: 560px;
+}
+
+.banner .white {
+  color: #FFFFFF;
+}
+
+.banner .yellow {
+    color: #F5EA83;
 }
 
 .home, .about, .plan, .log-in {
@@ -27,6 +49,12 @@ body {
 
 @media screen and (max-width: 900px) {
   body {
-    margin: 3rem 2rem;
+    margin: 2rem 2rem;
+  }
+  .banner {
+    padding: 34px 52px;
+  }
+  .banner h1 {
+    font-size: 2.3rem;
   }
 }
