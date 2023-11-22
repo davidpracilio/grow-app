@@ -1,0 +1,37 @@
+.banner {
+  padding: 52px;
+}
+
+.banner h1 {
+  font-size: 5rem;
+}
+
+.banner p {
+  padding-top: 16px;
+  font-size: 1.1rem;
+  max-width: 560px;
+}
+
+.banner .white {
+  color: #FFFFFF;
+}
+
+.banner .yellow {
+    color: #F5EA83;
+}
+
+@media screen and (max-width: 900px) {
+  .banner {
+    padding: 34px 52px;
+  }
+  .banner h1 {
+    font-size: 2.6rem;
+    display: inline;
+  }
+  .banner h1::after {
+    content: ' ';
+  }
+  .banner p {
+    font-size: 1rem;
+  }
+}

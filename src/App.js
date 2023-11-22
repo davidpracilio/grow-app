@@ -33,7 +33,8 @@ function ClerkProviderWithRoutes() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
-          <Route
+          <Route path='/plan' element={<Plan/>} />
+{/*           <Route
             path="/plan"
             element={
             <>
@@ -45,7 +46,7 @@ function ClerkProviderWithRoutes() {
               </SignedOut>
             </>
             }
-          />
+          /> */}
           {/* <Route path='/signin' element={<SignIn />} /> */}
           <Route
             path="/signin"
