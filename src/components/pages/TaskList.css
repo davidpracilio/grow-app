@@ -1,0 +1,32 @@
+.button-edit {
+  width: 64px;
+  height: 32px;
+  background-color: #00C49A;
+  border: 2px solid #00C49A;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.button-edit:hover {
+  cursor: pointer;
+  background-color: #44D2B3;
+  border-color: #44D2B3;
+}
+
+.button-delete {
+  width: 64px;
+  height: 32px;
+  background-color: #F46242;
+  border: 2px solid #F46242;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.button-delete:hover {
+  cursor: pointer;
+  background-color: #F57A5E;
+  border-color: #F57A5E;
+}

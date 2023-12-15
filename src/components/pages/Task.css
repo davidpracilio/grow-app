@@ -1,0 +1,105 @@
+.button-save {
+  width: 320px;
+  height: 42px;
+  color: #FFFFFF;
+  background-color: #00C49A;
+  border: 2px solid #00C49A;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  position: absolute;
+  bottom: 20px;
+  left: 26px;
+}
+
+.button-save:hover {
+  cursor: pointer;
+  background-color: #44D2B3;
+  border-color: #44D2B3;
+}
+
+.button-exit {
+  width: 194px;
+  height: 42px;
+  color: #FFFFFF;
+  background-color: #F46242;
+  border: 2px solid #F46242;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  position: absolute;
+  bottom: 20px;
+  right: 26px;
+}
+
+.button-exit:hover {
+  cursor: pointer;
+  background-color: #F57A5E;
+  border-color: #F57A5E;
+}
+
+input {
+  padding: 5px 3px;
+  width: 500px;
+  color: grey;
+  outline: 0;
+  border-width: 0 0 1px;
+  /* border-width: 0px; */
+  border-color: lightgrey;
+  /* border-radius: 4px; */
+  margin-bottom: 10px;
+}
+
+input::placeholder {
+  color: lightgrey
+}
+
+/* input:focus {
+  border-color: green;
+  outline: 1px dotted #000
+} */
+
+textarea {
+  padding: 5px 3px;
+  width: 500px;
+  color: grey;
+  outline: 0;
+  /* border-width: 0 0 1px; */
+  border-width: 1px;
+  border-color: lightgrey;
+  border-radius: 5px;
+  resize: none;
+  margin-top: 4px;
+  margin-bottom: 16px;
+}
+
+textarea::placeholder {
+  color: lightgrey;
+  position: absolute;
+  padding: 2px 3px ;
+}
+
+select {
+  padding: 5px 3px;
+  width: 500px;
+  outline: 0;
+  border-width: 1px;
+  border-color: lightgrey;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+select:valid {
+  color:grey;
+}
+
+select:invalid {
+  color:lightgrey;
+}
+
+.task-large hr {
+  border-top: 1px dotted lightgrey;
+  border-width: 1px 0 0;
+  padding-bottom: 8px;
+  width: 500px;
+}

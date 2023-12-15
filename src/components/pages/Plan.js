@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from 'react';
+import Task from './Task';
+import TaskList from './TaskList';
 import '../../App.css';
 import './Plan.css';
 
 const Plan = () => {
-
-  const tasks = [
+  const [tasks, setTasks] = useState([
     {
+      "id": 1,
       "heading": "API Endpoint",
       "detail": "Airedale cheeseburger ricotta who moved my cheese cauliflower " +
         "cheese cow cheese on toast fromage.",
@@ -13,6 +15,7 @@ const Plan = () => {
       "status": "Not Started"
     },
     {
+      "id": 2,
       "heading": "Slack Integration",
       "detail": "Parmesan cheddar taleggio fromage frais cheesecake fondue " +
         "pepper jack red leicester.",
@@ -20,6 +23,7 @@ const Plan = () => {
       "status": "In Progress"
     },
     {
+      "id": 3,
       "heading": "Learn Go",
       "detail": "Danish fontina cheesy grin cut the cheese ricotta taleggio " +
         "fromage camembert de normandie cheesy.",
@@ -27,53 +31,45 @@ const Plan = () => {
       "status": "In Progress"
     },
     {
+      "id": 4,
       "heading": "IAM on AWS",
       "detail": "Lancashire stinking bishop feta. Parmesan smelly cheese " +
         "ricotta cream cheese who moved my cheese.",
       "category": "Development",
       "status": "Not Started"
     }
-  ];
+  ]);
 
-  const getTaskCategoryClassName = (category) => {
-    switch (category) {
-      case "Development":
-        return "category-dev"
-      case "Reading":
-        return "category-reading"
-      default:
-        break;
-    }
-  };
+  const [showTask, setShowTask] = useState(false);
 
-  const getTaskStatusClassName = (status) => {
-    switch (status) {
-      case "Not Started":
-        return "status-notstarted"
-      case "In Progress":
-        return "status-inprogress"
-      default:
-        break;
-    }
+  const handleDelete = (id) => {
+    const newTasks = tasks.filter(task => task.id !== id);
+    setTasks(newTasks);
+  }
+
+  const handleEdit = (id) => {
+    setShowTask(!showTask)
   }
 
   return (
     <>
-      <section className='tasks'>
-        {tasks.map(function(task, i) {
-          return (
-            <div key = {i} className='task'>
-              <div className="head">{task.heading}</div>
-              <div className="detail">{task.detail}</div>
-              <div className="categorystatus">                
-                <div className={getTaskCategoryClassName(task.category)}>{task.category}</div>
-                <div className={getTaskStatusClassName(task.status)}></div>
-              </div>
-              <hr></hr>
-            </div>
-          )
-        })}
-      </section>
+      {!showTask &&
+        <div className='taskheading'>
+          <button onClick={handleEdit}>Add a task</button>
+        </div>
+      }
+      {!showTask &&
+        <TaskList
+          tasks={tasks}
+          handleDelete={handleDelete}
+          handleEdit={handleEdit}
+        />
+      }
+      {showTask &&
+        <Task
+          handleEdit={handleEdit}
+        />
+      }
     </>
   );
 }

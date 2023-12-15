@@ -1,22 +1,47 @@
+.taskheading {
+  padding-top: 36px;
+  margin: auto;
+  width: 96%;
+  text-align: center;
+}
+
 .tasks {
-  padding-top: 52px;
-  padding-left: 40px;
+  padding-top: 20px;
+  /* padding-left: 40px; */
   display: flex;
   align-items: center;
   margin: auto;
   width: 96%;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
+  color: #94A3B8;
+}
+
+.task-content-hidden {
+  display: none;
 }
 
 .task {
   margin: 10px;
   width: 274px;
-  height: 186px;
+  height: 226px;
   background-color: #FFFFFF;
   border: 1px solid #E2E8F0;
   border-radius: 8px;
   opacity: 0.9;
+}
+
+/* Move task-large stuff to Task.css? */
+
+.task-large {
+  margin: auto;
+  width: 592px;
+  height: 472px;
+  background-color: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  opacity: 0.9;
+  position: relative;
 }
 
 .task .head {
@@ -26,8 +51,26 @@
   padding: 20px 20px 14px 20px;
 }
 
+.task-large .head {
+  color: #FF862F;
+  font-size: 0.9rem;
+  font-weight: 900;
+  padding: 24px 0px 8px 0px;
+}
+
+.task-large .form {
+  padding: 10px 40px;
+  text-align: left;
+}
+
+.task-large .subhead {
+  color: #FF862F;
+  font-size: 0.9rem;
+  font-weight: 900;
+  padding: 6px 0 8px 0px;
+}
+
 .task .detail {
-  color: #94A3B8;
   font-size: 0.8rem;
   padding: 0 20px;
 }
@@ -36,22 +79,6 @@
   display: flex;
   padding: 16px 20px;
   justify-content: space-between;
-}
-
-.task .categorystatus .category {
-  color: #33BFFF;
-  background-color: #F0FAFF;
-  border: 8px solid #F0FAFF;
-  font-size: 0.8rem;
-  font-weight: bold;
-}
-
-.task .category-dev {
-  color: #33BFFF;
-  background-color: #F0FAFF;
-  border: 8px solid #F0FAFF;
-  font-size: 0.8rem;
-  font-weight: bold;
 }
 
 .task .status-notstarted {
@@ -95,7 +122,16 @@
   height: 1px;
 }
 
+.task .shortcuts {
+  display: flex;
+  padding: 18px 20px;
+  justify-content: flex-end;
+}
+
 @media screen and (max-width: 900px) {
+  .taskheading {
+    padding-right: 10px;
+  }
   .tasks {
     padding-left: 24px;
   }
