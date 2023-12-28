@@ -60,7 +60,7 @@ input::placeholder {
 } */
 
 textarea {
-  padding: 5px 3px;
+  padding: 6px 6px;
   width: 500px;
   color: grey;
   outline: 0;
@@ -76,7 +76,7 @@ textarea {
 textarea::placeholder {
   color: lightgrey;
   position: absolute;
-  padding: 2px 3px ;
+  padding: 2px 1px ;
 }
 
 select {

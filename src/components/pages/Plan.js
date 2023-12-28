@@ -5,6 +5,7 @@ import '../../App.css';
 import './Plan.css';
 
 const Plan = () => {
+
   const [tasks, setTasks] = useState([
     {
       "id": 1,
@@ -41,21 +42,36 @@ const Plan = () => {
   ]);
 
   const [showTask, setShowTask] = useState(false);
+  const [newTask, setNewTask] = useState(false);
 
   const handleDelete = (id) => {
     const newTasks = tasks.filter(task => task.id !== id);
     setTasks(newTasks);
   }
 
-  const handleEdit = (id) => {
-    setShowTask(!showTask)
+  const handleEdit = (task) => {
+    const newTasks = task;
+    setTasks(newTasks);
+    setShowTask(!showTask);
+  }
+
+  const handleSave = (newTask, task) => {
+    if (newTask) {
+    
+    }
+    setShowTask(!showTask);
+  }
+
+  const handleNewTask = () => {
+    setNewTask(true);
+    setShowTask(true);
   }
 
   return (
     <>
       {!showTask &&
         <div className='taskheading'>
-          <button onClick={handleEdit}>Add a task</button>
+          <button onClick={handleNewTask}>Add a task</button>
         </div>
       }
       {!showTask &&
@@ -67,7 +83,10 @@ const Plan = () => {
       }
       {showTask &&
         <Task
+          newTask={newTask}
+          task={tasks}
           handleEdit={handleEdit}
+          handleSave={handleSave}
         />
       }
     </>

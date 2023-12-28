@@ -44,7 +44,7 @@ const TaskList = ({ tasks, handleDelete, handleEdit }) => {
               </div>
               <hr></hr>
               <div className='shortcuts'>
-                <button className='button-edit' onClick={() => handleEdit(task.id)}>Edit</button>
+                <button className='button-edit' onClick={() => handleEdit(task)}>Edit</button>
                 <button className='button-delete' onClick={() => handleDelete(task.id)}>Delete</button>
               </div>
             </div>
