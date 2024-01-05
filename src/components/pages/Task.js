@@ -5,7 +5,7 @@ import './Task.css';
 
 // use react-modal instead?
 
-const Task = ({ newTask, task, handleEdit, handleSave}) => {
+const Task = ({ newTask, task, handleEdit, handleSave, handleExit }) => {
 
   const [inputs, setInputs] = useState(task);
 
@@ -18,8 +18,12 @@ const Task = ({ newTask, task, handleEdit, handleSave}) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert(JSON.stringify(inputs));
-    // handleSave(newTask, task);
+    handleSave(newTask, inputs);
+  }
+
+  const handleCancel = (event) => {
+    event.preventDefault();
+    handleExit();
   }
 
   return (
@@ -57,8 +61,8 @@ const Task = ({ newTask, task, handleEdit, handleSave}) => {
                 <div className='subhead'>Category</div>
                 <select /* required */>
                   <option value=''>Select a category</option>
-                  <option value='1' selected={true ? task.category === 'Development' : ''}>Development</option>
-                  <option value='2' selected={true ? task.category === 'In Progress' : ''}>In Progress</option>
+                  <option value='1' selected={true ? inputs.category === 'Development' : ''}>Development</option>
+                  <option value='2' selected={true ? inputs.category === 'In Progress' : ''}>In Progress</option>
                 </select>
                 <div className='subhead'>Website</div>
                 <input
@@ -70,7 +74,7 @@ const Task = ({ newTask, task, handleEdit, handleSave}) => {
                   // required
                 />
                 <button type='submit' className='button-save' /* onClick={() => handleSave(newTask, task)} */>Save</button>
-                <button className='button-exit' onClick={() => handleSave(newTask, task)}>Exit</button>
+                <button type='button' className='button-exit' onClick={handleCancel}>Exit</button>
               </div>
             </div>
           </section>

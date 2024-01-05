@@ -5,7 +5,6 @@ import '../../App.css';
 import './Plan.css';
 
 const Plan = () => {
-
   const [tasks, setTasks] = useState([
     {
       "id": 1,
@@ -43,23 +42,39 @@ const Plan = () => {
 
   const [showTask, setShowTask] = useState(false);
   const [newTask, setNewTask] = useState(false);
+  const [taskToEdit, setTaskToEdit] = useState(null);
+
+  const handleEdit = (task) => {
+    setTaskToEdit(task);
+    setShowTask(true);
+  }
 
   const handleDelete = (id) => {
     const newTasks = tasks.filter(task => task.id !== id);
     setTasks(newTasks);
   }
 
-  const handleEdit = (task) => {
-    const newTasks = task;
-    setTasks(newTasks);
-    setShowTask(!showTask);
-  }
-
   const handleSave = (newTask, task) => {
     if (newTask) {
-    
+      const updatedTasks = [...tasks, { ...task, id: tasks.length + 1, category: "Development", status: "Not Started" }];
+      setShowTask(false);
+      setTasks(updatedTasks);
+    } else {
+        const updatedTasks = tasks.map((existingTask) => {
+        if (existingTask.id === task.id) {
+          return { ...existingTask, heading: task.heading, details: task.details };
+        }
+        return existingTask;
+      });
+      setTasks(updatedTasks);
+      setShowTask(false);
     }
-    setShowTask(!showTask);
+  }
+
+  const handleExit = () => {
+    setNewTask(false);
+    setShowTask(false);
+    setTasks(tasks => [...tasks]);
   }
 
   const handleNewTask = () => {
@@ -84,9 +99,10 @@ const Plan = () => {
       {showTask &&
         <Task
           newTask={newTask}
-          task={tasks}
+          task={!newTask ? taskToEdit : tasks}
           handleEdit={handleEdit}
           handleSave={handleSave}
+          handleExit={handleExit}
         />
       }
     </>
