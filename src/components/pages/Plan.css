@@ -31,43 +31,11 @@
   opacity: 0.9;
 }
 
-/* Move task-large stuff to Task.css? */
-
-.task-large {
-  margin: auto;
-  width: 592px;
-  height: 472px;
-  background-color: #FFFFFF;
-  border: 1px solid #E2E8F0;
-  border-radius: 8px;
-  opacity: 0.9;
-  position: relative;
-}
-
 .task .head {
   color: #FF862F;
   font-size: 0.9rem;
   font-weight: 900;
   padding: 20px 20px 14px 20px;
-}
-
-.task-large .head {
-  color: #FF862F;
-  font-size: 0.9rem;
-  font-weight: 900;
-  padding: 24px 0px 8px 0px;
-}
-
-.task-large .form {
-  padding: 10px 40px;
-  text-align: left;
-}
-
-.task-large .subhead {
-  color: #FF862F;
-  font-size: 0.9rem;
-  font-weight: 900;
-  padding: 6px 0 8px 0px;
 }
 
 .task .detail {

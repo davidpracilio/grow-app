@@ -11,7 +11,20 @@ const Task = ({ newTask, task, handleEdit, handleSave, handleExit }) => {
 
   const handleChange = (event) => {
     const name = event.target.name;
-    const value = event.target.value;
+    let value = event.target.value;
+
+    if (name === 'category') {
+      switch (value) {
+        case '1':
+          value = 'Development';
+          break;
+        case '2':
+          value = 'Reading';
+          break;
+        default:
+          break;
+      }
+    }
 
     setInputs(values => ({...values, [name]: value}));
   }
@@ -36,11 +49,10 @@ const Task = ({ newTask, task, handleEdit, handleSave, handleExit }) => {
               <div className='form'>
                 {/* Change to h? */}
                 <div className='subhead'>Title</div>
-                {/* Change to labal? */}
+                {/* Change to label? */}
                 <input
                   type='text'
                   name='heading'
-                  // defaultValue={!newTask ? inputs.heading: ''}
                   value={inputs.heading || ""}
                   placeholder='Up to 100 characters'
                   maxLength={100}
@@ -59,10 +71,13 @@ const Task = ({ newTask, task, handleEdit, handleSave, handleExit }) => {
                 />
                 <hr></hr>
                 <div className='subhead'>Category</div>
-                <select /* required */>
+                <select
+                  name='category'
+                  required
+                  onChange={handleChange}>
                   <option value=''>Select a category</option>
                   <option value='1' selected={true ? inputs.category === 'Development' : ''}>Development</option>
-                  <option value='2' selected={true ? inputs.category === 'In Progress' : ''}>In Progress</option>
+                  <option value='2' selected={true ? inputs.category === 'Reading' : ''}>Reading</option>
                 </select>
                 <div className='subhead'>Website</div>
                 <input
@@ -71,9 +86,8 @@ const Task = ({ newTask, task, handleEdit, handleSave, handleExit }) => {
                   value={inputs.website || ""}
                   placeholder='Enter a website address'
                   onChange={handleChange}
-                  // required
                 />
-                <button type='submit' className='button-save' /* onClick={() => handleSave(newTask, task)} */>Save</button>
+                <button type='submit' className='button-save'>Save</button>
                 <button type='button' className='button-exit' onClick={handleCancel}>Exit</button>
               </div>
             </div>

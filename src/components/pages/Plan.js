@@ -44,6 +44,14 @@ const Plan = () => {
   const [newTask, setNewTask] = useState(false);
   const [taskToEdit, setTaskToEdit] = useState(null);
 
+/*   useEffect(() => {
+    if (newTask && tasks.length > 0) {
+      setTaskToEdit(tasks[tasks.length - 1]); // Set the last task as the task to edit
+      setShowTask(true);
+      setNewTask(false);
+    }
+  }, [tasks, newTask]); */
+
   const handleEdit = (task) => {
     setTaskToEdit(task);
     setShowTask(true);
@@ -56,13 +64,14 @@ const Plan = () => {
 
   const handleSave = (newTask, task) => {
     if (newTask) {
-      const updatedTasks = [...tasks, { ...task, id: tasks.length + 1, category: "Development", status: "Not Started" }];
-      setShowTask(false);
+      const updatedTasks = [...tasks, { ...task, id: tasks.length + 1, status: 'Not Started' }];
       setTasks(updatedTasks);
+      setNewTask(false);
+      setShowTask(false);
     } else {
         const updatedTasks = tasks.map((existingTask) => {
         if (existingTask.id === task.id) {
-          return { ...existingTask, heading: task.heading, details: task.details };
+          return { ...existingTask, heading: task.heading, detail: task.detail, category: task.category, status: task.status };
         }
         return existingTask;
       });

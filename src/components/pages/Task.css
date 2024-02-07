@@ -44,9 +44,7 @@ input {
   color: grey;
   outline: 0;
   border-width: 0 0 1px;
-  /* border-width: 0px; */
   border-color: lightgrey;
-  /* border-radius: 4px; */
   margin-bottom: 10px;
 }
 
@@ -54,17 +52,11 @@ input::placeholder {
   color: lightgrey
 }
 
-/* input:focus {
-  border-color: green;
-  outline: 1px dotted #000
-} */
-
 textarea {
   padding: 6px 6px;
   width: 500px;
   color: grey;
   outline: 0;
-  /* border-width: 0 0 1px; */
   border-width: 1px;
   border-color: lightgrey;
   border-radius: 5px;
@@ -97,9 +89,66 @@ select:invalid {
   color:lightgrey;
 }
 
+.task-large {
+  margin: auto;
+  width: 592px;
+  height: 472px;
+  background-color: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  opacity: 0.9;
+  position: relative;
+}
+
+.task-large .head {
+  color: #FF862F;
+  font-size: 0.9rem;
+  font-weight: 900;
+  padding: 24px 0px 8px 0px;
+}
+
+.task-large .form {
+  padding: 10px 40px;
+  text-align: left;
+}
+
+.task-large .subhead {
+  color: #FF862F;
+  font-size: 0.9rem;
+  font-weight: 900;
+  padding: 6px 0px 8px 0px;
+}
+
 .task-large hr {
   border-top: 1px dotted lightgrey;
   border-width: 1px 0 0;
   padding-bottom: 8px;
   width: 500px;
+}
+
+@media screen and (max-width: 900px) {
+  .task-large {
+    width: 330px;
+  }
+  .task-large .form {
+    padding-left: 34px;
+  }
+  .task-large hr {
+    width: 256px;
+  }
+  .button-save {
+    width: 160px;
+  }
+  .button-exit {
+    width: 100px;
+  }
+  input {
+    width: 260px;
+  }
+  textarea {
+    width: 256px;
+  }
+  select {
+    width: 256px;
+  }
 }
