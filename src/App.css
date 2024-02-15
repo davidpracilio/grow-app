@@ -1,17 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway');
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "Roboto";
+  /* font-family: "Roboto"; */
+  font-family: "Raleway"
 }
 
-* {
-/*   background: #000 !important;
+/* * {
+  background: #000 !important;
   color: #0f0 !important;
-  outline: solid #f00 1px !important; */
-
-  -webkit-font-smoothing: antialiased;
-}
+  outline: solid #f00 1px !important;
+} */
 
 body {
   margin: 2rem 6rem;
@@ -52,5 +53,10 @@ button:hover {
 @media screen and (max-width: 900px) {
   body {
     margin: 2.2rem 1.8rem;
+  }
+  .content {
+    min-width: 320px;
+    max-width: 480px;
+    margin: auto;
   }
 }
