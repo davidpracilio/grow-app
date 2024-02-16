@@ -3,13 +3,14 @@
 }
 
 .banner h1 {
-  font-size: 5rem;
+  font-size: 4rem;
 }
 
 .banner p {
   padding-top: 16px;
   font-size: 1.1rem;
   max-width: 560px;
+  line-height: 1.4;
 }
 
 .banner .white {
@@ -25,7 +26,7 @@
     padding: 34px 52px;
   }
   .banner h1 {
-    font-size: 2.6rem;
+    font-size: 2.4rem;
     display: inline;
   }
   .banner h1::after {
