@@ -1,0 +1,15 @@
+.newuser {
+  margin-top: 36px;
+  padding-left: 40px;
+  visibility: hidden; /* temporary */
+}
+
+.labels {
+  padding-bottom: 6px;
+}
+
+.buttons {
+  margin-top: 6px;
+  margin-right: 6px;
+  width: 120px;
+}
