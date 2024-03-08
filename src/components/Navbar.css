@@ -7,7 +7,7 @@
 }
 
 .navbar h1 {
-  font-family: "Anonymous Pro";
+  /* font-family: "Anonymous Pro"; */
   font-size: 3.8rem;
 }
 
@@ -87,7 +87,10 @@
     padding-left: 40px;
     border-bottom: 2px #00C49A solid;
   }
-
+  .navbar h1 {
+    /* font-family: "Anonymous Pro"; */
+    font-size: 3rem;
+  }
   .nav-links {
     color: #00C49A;
   }

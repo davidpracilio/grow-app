@@ -69,7 +69,7 @@ const Task = ({ newTask, task, handleEdit, handleSave, handleExit }) => {
                   required
                   onChange={handleChange}
                 />
-                <hr></hr>
+                <hr/>
                 <div className='subhead'>Category</div>
                 <select
                   name='category'

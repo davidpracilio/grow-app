@@ -4,13 +4,31 @@ import './SignIn.css';
 import { useState, useEffect } from 'react'
 import { createClient } from '@supabase/supabase-js'
 
-const supabase = createClient(process.env.REACT_APP_SUPABASE_URL, process.env.REACT_APP_SUPABASE_KEY);
-
 const SignIn = () => {
+
+  const supabase = createClient(process.env.REACT_APP_SUPABASE_URL, process.env.REACT_APP_SUPABASE_KEY);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [session, setSession] = useState(null);
+
+  // useEffect(() => {
+  //   supabase.auth.getSession().then(({ data: { session } }) => {
+  //     setSession(session)
+  //   })
+
+  //   const {
+  //     data: { subscription },
+  //   } = supabase.auth.onAuthStateChange((_event, session) => {
+  //     setSession(session)
+  //   })
+
+  //   return () => subscription.unsubscribe()
+  // }, [])
+
+  // if (session) {
+  //   return (<div>Logged in!</div>)
+  // }
 
   const handleSignup = async (event) => {
     event.preventDefault();
@@ -51,7 +69,7 @@ const SignIn = () => {
   }
 
   const handleGetSession = async (event) => {
-    event.preventDefault();
+    //event.preventDefault();
 
     const { data: { session } } = await supabase.auth.getSession();
     setSession(session);
@@ -62,8 +80,9 @@ const SignIn = () => {
 
   return (
     <>
-      <section className='newuser'>
+      <section className='card'>
         <form onSubmit={handleSignup}>
+          <div className='heading'>Sign in</div>
           <div className="labels">Email</div>
           <input
             type='text'
@@ -79,39 +98,14 @@ const SignIn = () => {
             onChange={(event) => setPassword(event.target.value)}
           />
           <br/>
-          <button type='submit' className='buttons'>New User</button>
-          <button type='button' className='buttons' onClick={handleSignIn}>Sign In</button>
-          <button type='button' className='buttons' onClick={handleCheckUser}>Check</button>
-          <button type='button' className='buttons' onClick={handleGetSession}>Get Session</button>
+          {/* <button type='submit' className='buttons'>New User</button> */}
+          <button type='button' className='button-signin' onClick={handleSignIn}>SIGN IN</button>
+          {/* <button type='button' className='buttons' onClick={handleCheckUser}>Check</button> */}
+          {/* <button type='button' className='buttons' onClick={handleGetSession}>Get Session</button> */}
         </form>
       </section>
     </>
   )
-
-/*
-  const [session, setSession] = useState(null)
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session)
-    })
-
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session)
-    })
-
-    return () => subscription.unsubscribe()
-  }, [])
-
-  if (!session) {
-    return (<Auth supabaseClient={supabase} appearance={{ theme: customTheme }} theme="dark"/>)
-  }
-  else {
-    return (<div>Logged in!</div>)
-  } */
-
 }
 
 export default SignIn;
