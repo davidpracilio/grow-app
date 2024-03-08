@@ -99,7 +99,7 @@ const SignIn = () => {
           />
           <br/>
           {/* <button type='submit' className='buttons'>New User</button> */}
-          <button type='button' className='button-signin' onClick={handleSignIn}>SIGN IN</button>
+          <button type='button' className='button-signin' onClick={handleSignIn}>Sign In</button>
           {/* <button type='button' className='buttons' onClick={handleCheckUser}>Check</button> */}
           {/* <button type='button' className='buttons' onClick={handleGetSession}>Get Session</button> */}
         </form>
