@@ -59,6 +59,10 @@
   border-color: lightgrey;
 }
 
+.card input::placeholder {
+  color: lightgrey
+}
+
 .button-signin {
   width: 256px;
   height: 42px;

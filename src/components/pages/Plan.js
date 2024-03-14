@@ -1,10 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Task from './Task';
 import TaskList from './TaskList';
 import '../../App.css';
 import './Plan.css';
+import { createClient } from '@supabase/supabase-js'
 
 const Plan = () => {
+
+  const supabase = createClient(process.env.REACT_APP_SUPABASE_URL, process.env.REACT_APP_SUPABASE_KEY);
+  
+  const [session, setSession] = useState(null);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session)
+    })
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session)
+    })
+
+    return () => subscription.unsubscribe()
+  }, [])
+
   const [tasks, setTasks] = useState([
     {
       "id": 1,
@@ -43,14 +63,6 @@ const Plan = () => {
   const [showTask, setShowTask] = useState(false);
   const [newTask, setNewTask] = useState(false);
   const [taskToEdit, setTaskToEdit] = useState(null);
-
-/*   useEffect(() => {
-    if (newTask && tasks.length > 0) {
-      setTaskToEdit(tasks[tasks.length - 1]); // Set the last task as the task to edit
-      setShowTask(true);
-      setNewTask(false);
-    }
-  }, [tasks, newTask]); */
 
   const handleEdit = (task) => {
     setTaskToEdit(task);
@@ -93,19 +105,19 @@ const Plan = () => {
 
   return (
     <>
-      {!showTask &&
+      {!showTask && //(session) &&
         <div className='taskheading'>
           <button onClick={handleNewTask}>Add a task</button>
         </div>
       }
-      {!showTask &&
+      {!showTask && //(session) &&
         <TaskList
           tasks={tasks}
           handleDelete={handleDelete}
           handleEdit={handleEdit}
         />
       }
-      {showTask &&
+      {showTask && //(session) &&
         <Task
           newTask={newTask}
           task={!newTask ? taskToEdit : tasks}

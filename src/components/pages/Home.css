@@ -18,7 +18,19 @@
 }
 
 .banner .yellow {
-    color: #F5EA83;
+  color: #F5EA83;
+}
+
+.banner .button-seeplan {
+  background-color: #FFFFFF;
+  border-color: #FFFFFF;
+  color: #FF862F;
+}
+
+.banner .button-seeplan:hover {
+  cursor: pointer;
+  background-color: #F3F3F3;
+  border-color: #F3F3F3;
 }
 
 @media screen and (max-width: 900px) {
@@ -34,5 +46,8 @@
   }
   .banner p {
     font-size: 1rem;
+  }
+  .banner .button-seeplan {
+    width: 230px;
   }
 }

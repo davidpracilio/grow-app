@@ -88,6 +88,8 @@ const SignIn = () => {
             type='text'
             name='email'
             value={email}
+            placeholder='example@outlook.com'
+            required
             onChange={(event) => setEmail(event.target.value)}
           />
           <div className='labels'>Password</div>
@@ -95,6 +97,8 @@ const SignIn = () => {
             type='password'
             name='password'
             value={password}
+            placeholder=''
+            required
             onChange={(event) => setPassword(event.target.value)}
           />
           <br/>
