@@ -1,49 +1,24 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import '../../App.css';
 import './SignIn.css';
-import { useState, useEffect } from 'react'
+import AuthContext from '../AuthContext';
+import { useNavigate } from 'react-router-dom';
 import { createClient } from '@supabase/supabase-js'
 
 const SignIn = () => {
+  const { setIsLoggedIn } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+
+  const navigateTo = (path) => {
+    navigate(path);
+  }
 
   const supabase = createClient(process.env.REACT_APP_SUPABASE_URL, process.env.REACT_APP_SUPABASE_KEY);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [session, setSession] = useState(null);
-
-  // useEffect(() => {
-  //   supabase.auth.getSession().then(({ data: { session } }) => {
-  //     setSession(session)
-  //   })
-
-  //   const {
-  //     data: { subscription },
-  //   } = supabase.auth.onAuthStateChange((_event, session) => {
-  //     setSession(session)
-  //   })
-
-  //   return () => subscription.unsubscribe()
-  // }, [])
-
-  // if (session) {
-  //   return (<div>Logged in!</div>)
-  // }
-
-  const handleSignup = async (event) => {
-    event.preventDefault();
-
-    const { data, error } = await supabase.auth.signUp({
-      email: email,
-      password: password
-    })
-
-    if (error) {
-      alert(error);
-    } else {
-      alert('Signed up!');
-    }
-  };
 
   const handleSignIn = async (event) => {
     event.preventDefault();
@@ -56,7 +31,10 @@ const SignIn = () => {
     if (error) {
       alert(error);
     } else {
+      localStorage.setItem('userId', data.user.id);
       alert('Signed in!');
+      setIsLoggedIn(true);
+      navigate('/plan');
     }
   };
 
@@ -68,20 +46,10 @@ const SignIn = () => {
     alert(userData);
   }
 
-  const handleGetSession = async (event) => {
-    //event.preventDefault();
-
-    const { data: { session } } = await supabase.auth.getSession();
-    setSession(session);
-
-    const sessionData = JSON.stringify(session);
-    alert(sessionData);
-  }
-
   return (
     <>
       <section className='card'>
-        <form onSubmit={handleSignup}>
+        <form onSubmit={handleSignIn}>
           <div className='heading'>Sign in</div>
           <div className="labels">Email</div>
           <input
@@ -101,11 +69,16 @@ const SignIn = () => {
             required
             onChange={(event) => setPassword(event.target.value)}
           />
+          {/* <br/> */}
+          <div className='forgotpassword'>Forgot password?</div>
           <br/>
           {/* <button type='submit' className='buttons'>New User</button> */}
-          <button type='button' className='button-signin' onClick={handleSignIn}>Sign In</button>
-          {/* <button type='button' className='buttons' onClick={handleCheckUser}>Check</button> */}
-          {/* <button type='button' className='buttons' onClick={handleGetSession}>Get Session</button> */}
+          <div className='signinbottom'>
+            <button type='button' className='button-signin' onClick={handleSignIn}>Sign in</button>
+            <div className='account-signup'>
+              <span onClick={() => navigateTo('/signup')}>Sign up to Grow!</span>
+            </div>
+          </div>
         </form>
       </section>
     </>

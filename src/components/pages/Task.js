@@ -3,28 +3,12 @@ import '../../App.css';
 import './Plan.css';
 import './Task.css';
 
-// use react-modal instead?
-
 const Task = ({ newTask, task, handleEdit, handleSave, handleExit }) => {
-
   const [inputs, setInputs] = useState(task);
 
   const handleChange = (event) => {
     const name = event.target.name;
     let value = event.target.value;
-
-    if (name === 'category') {
-      switch (value) {
-        case '1':
-          value = 'Development';
-          break;
-        case '2':
-          value = 'Reading';
-          break;
-        default:
-          break;
-      }
-    }
 
     setInputs(values => ({...values, [name]: value}));
   }
@@ -52,8 +36,8 @@ const Task = ({ newTask, task, handleEdit, handleSave, handleExit }) => {
                 {/* Change to label? */}
                 <input
                   type='text'
-                  name='heading'
-                  value={inputs.heading || ""}
+                  name='name'
+                  value={inputs.name || ""}
                   placeholder='Up to 100 characters'
                   maxLength={100}
                   required
@@ -63,9 +47,9 @@ const Task = ({ newTask, task, handleEdit, handleSave, handleExit }) => {
                 <textarea
                   name='detail'
                   value={inputs.detail || ""}
-                  placeholder='Up to 200 characters'
+                  placeholder='Up to 120 characters'
                   rows={3}
-                  maxLength={200}
+                  maxLength={120}
                   required
                   onChange={handleChange}
                 />
@@ -73,11 +57,12 @@ const Task = ({ newTask, task, handleEdit, handleSave, handleExit }) => {
                 <div className='subhead'>Category</div>
                 <select
                   name='category'
+                  value={inputs.category || ""}
                   required
                   onChange={handleChange}>
                   <option value=''>Select a category</option>
-                  <option value='1' selected={true ? inputs.category === 'Development' : ''}>Development</option>
-                  <option value='2' selected={true ? inputs.category === 'Reading' : ''}>Reading</option>
+                  <option value='coding' selected={true ? inputs.category === 'coding' : ''}>Coding</option>
+                  <option value='reading' selected={true ? inputs.category === 'reading' : ''}>Reading</option>
                 </select>
                 <div className='subhead'>Website</div>
                 <input

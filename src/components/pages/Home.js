@@ -1,15 +1,31 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
 import '../../App.css';
 import './Home.css';
 import { useNavigate } from 'react-router-dom';
+import AuthContext from '../AuthContext';
+import { createClient } from '@supabase/supabase-js'
 
 export default function Home() {
+  const supabase = createClient(process.env.REACT_APP_SUPABASE_URL, process.env.REACT_APP_SUPABASE_KEY);
+
+  const { setIsLoggedIn } = useContext(AuthContext);
+  const [session, setSession] = useState(null);
 
   const navigate = useNavigate();
 
   const navigateTo = (path) => {
     navigate(path)
   };
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      if (session) {
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
+      }})
+  }, []);
 
   return (
     <>
@@ -21,7 +37,7 @@ export default function Home() {
         </p>
         <p></p>
         <br/>
-        <button type='button' className='button-seeplan' onClick={() => navigateTo('/plan')}>See your plan</button>
+        <button type='button' className='button-seeplan' onClick={() => session ? navigateTo('/plan'): navigateTo('/signin')}>See your plan</button>
       </section>
     </>
   );

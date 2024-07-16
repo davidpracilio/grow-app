@@ -1,20 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from './../images/logo.png';
+import AuthContext from './AuthContext';
 import './Navbar.css';
+import { createClient } from '@supabase/supabase-js';
 
 const Navbar = () => {
-  const [click, setClick] = useState(false);
+  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+  const supabase = createClient(process.env.REACT_APP_SUPABASE_URL, process.env.REACT_APP_SUPABASE_KEY);
 
+  const [click, setClick] = useState(false);
+  
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+    setIsLoggedIn(false);
+    closeMobileMenu();
+  };
 
   window.addEventListener('resize', function(event){
     if (this.window.innerWidth > 900) {
       closeMobileMenu();
     }
-  });
-
+  }); 
+  
   return (
     <>
       <nav className='navbar'>
@@ -45,8 +56,8 @@ const Navbar = () => {
             </Link>
           </li>
           <li className='menu-item'>
-            <Link to='./signin' className='nav-links' onClick={closeMobileMenu}>
-              Sign in
+            <Link to='./signin' className='nav-links' onClick={isLoggedIn ? handleSignOut : closeMobileMenu}>
+              {isLoggedIn ? 'Sign out' : 'Sign in'}
             </Link>
           </li>
         </ul>

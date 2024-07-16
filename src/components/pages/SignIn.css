@@ -8,8 +8,6 @@
   color: #FF862F;
   font-size: 1.1rem;
   font-weight: 600;
-  /* padding: 20px 20px 14px 20px; */
-
 }
 
 .buttons {
@@ -63,6 +61,47 @@
   color: lightgrey
 }
 
+.forgotpassword {
+  color: grey;
+  text-align: left;
+  margin-left: 3px;
+  font-size: 0.8rem;
+}
+
+.forgotpassword:hover {
+  cursor: pointer;
+}
+
+.signinbottom {
+  position: absolute;
+  bottom: 26px;
+  left: 26px;
+}
+
+.account-signup {
+  color: grey;
+  font-size: 0.8rem;
+  text-align: center;
+  /* margin-right: 6px; */
+}
+
+.account-signup label {
+  text-align: center;
+}
+
+.account-signup span {
+  color: grey;
+}
+
+.account-signup span:last-child {
+  /* color: #FF862F; */
+  cursor: pointer;
+}
+
+.account-signup span:hover {
+  cursor: pointer;
+}
+
 .button-signin {
   width: 256px;
   height: 42px;
@@ -72,9 +111,7 @@
   border-radius: 4px;
   font-size: 0.9rem;
   font-weight: bold;
-  position: absolute;
-  bottom: 52px;
-  left: 26px;
+  margin-bottom: 12px;
 }
 
 .button-signin:hover {
