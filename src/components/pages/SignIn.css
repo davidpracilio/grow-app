@@ -102,6 +102,13 @@
   cursor: pointer;
 }
 
+.account-signinup-error {
+  padding-top: 16px;
+  text-align: center;
+  color: red;
+  font-size: 0.8rem;
+}
+
 .button-signin {
   width: 256px;
   height: 42px;

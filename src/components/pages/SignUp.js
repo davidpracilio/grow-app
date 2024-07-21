@@ -21,22 +21,23 @@ const SignUp = () => {
   const [password, setPassword] = useState('');
   const [session, setSession] = useState(null);
   const [signedUp, setSignedUp] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleSignUp = async (event) => {
     event.preventDefault();
 
-    // const { data, error } = await supabase.auth.signUp({
-    //   email: email,
-    //   password: password
-    // })
+    const { data, error } = await supabase.auth.signUp({
+      email: email,
+      password: password
+    })
 
-    // if (error) {
-    //   alert(error);
-    // } else {
+    if (error) {
+      console.error(error);
+      setError(error);
+    } else {
       setSignedUp(true);
-      
-      // navigate('/home');
-    // }
+      navigate('/home');
+    }
   };
 
   const handleCheckUser = async (event) => {
@@ -84,10 +85,8 @@ const SignUp = () => {
               required
               onChange={(event) => setPassword(event.target.value)}
             />
-            {/* <br/> */}
-            <div className='forgotpassword'>Forgot password?</div>
+            {error?<div className='account-signinup-error'>{error.message}</div>: null}
             <br/>
-            {/* <button type='submit' className='buttons'>New User</button> */}
             <div className='signinbottom'>
               <button type='button' className='button-signin' onClick={handleSignUp}>Sign up</button>
               <div className='account-signup'>

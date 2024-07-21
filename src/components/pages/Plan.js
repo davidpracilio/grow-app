@@ -5,9 +5,16 @@ import '../../App.css';
 import './Plan.css';
 import { createClient } from '@supabase/supabase-js'
 import AuthContext from '../AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Plan = () => {
   const { setIsLoggedIn } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+
+  const navigateTo = (path) => {
+    navigate(path);
+  }
 
   const supabase = createClient(process.env.REACT_APP_SUPABASE_URL, process.env.REACT_APP_SUPABASE_KEY);
   
@@ -42,6 +49,7 @@ const Plan = () => {
         localStorage.setItem('userId', session.user.id);
       } else {
         setIsLoggedIn(false);
+        navigateTo('/signin');
       }
     })
   }, []);
@@ -58,6 +66,7 @@ const Plan = () => {
     fetchData(userIdFromStorage);
   } else {
     setIsLoggedIn(false);
+
   }
 }, []);
   

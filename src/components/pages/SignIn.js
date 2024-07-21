@@ -19,6 +19,7 @@ const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [session, setSession] = useState(null);
+  const [error, setError] = useState(null);
 
   const handleSignIn = async (event) => {
     event.preventDefault();
@@ -29,10 +30,10 @@ const SignIn = () => {
     })
 
     if (error) {
-      alert(error);
+      console.error(error);
+      setError(error);
     } else {
       localStorage.setItem('userId', data.user.id);
-      alert('Signed in!');
       setIsLoggedIn(true);
       navigate('/plan');
     }
@@ -69,10 +70,9 @@ const SignIn = () => {
             required
             onChange={(event) => setPassword(event.target.value)}
           />
-          {/* <br/> */}
-          <div className='forgotpassword'>Forgot password?</div>
+          {/* <div className='forgotpassword'>Forgot password?</div> */}
+          {error?<div className='account-signinup-error'>{error.message}</div>: null}
           <br/>
-          {/* <button type='submit' className='buttons'>New User</button> */}
           <div className='signinbottom'>
             <button type='button' className='button-signin' onClick={handleSignIn}>Sign in</button>
             <div className='account-signup'>
