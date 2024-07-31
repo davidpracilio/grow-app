@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef, useEffect } from "react";
 import '../../App.css';
 import './SignIn.css';
 import AuthContext from '../AuthContext';
@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import { createClient } from '@supabase/supabase-js'
 
 const SignUp = () => {
-
   const { setIsLoggedIn } = useContext(AuthContext);
 
   const navigate = useNavigate();
@@ -22,6 +21,11 @@ const SignUp = () => {
   const [session, setSession] = useState(null);
   const [signedUp, setSignedUp] = useState(false);
   const [error, setError] = useState(null);
+  const formRef = useRef(null);
+
+  useEffect(() => {
+    formRef.current.email.focus();
+  }, []);
 
   const handleSignUp = async (event) => {
     event.preventDefault();
@@ -65,7 +69,7 @@ const SignUp = () => {
         */}
       {!signedUp &&
         <section className='card'>
-          <form onSubmit={handleSignUp}>
+          <form onSubmit={handleSignUp} ref={formRef}>
             <div className='heading'>Sign up</div>
             <div className="labels">Email</div>
             <input
@@ -88,7 +92,7 @@ const SignUp = () => {
             {error?<div className='account-signinup-error'>{error.message}</div>: null}
             <br/>
             <div className='signinbottom'>
-              <button type='button' className='button-signin' onClick={handleSignUp}>Sign up</button>
+              <button type='submit' className='button-signin'>Sign up</button>
               <div className='account-signup'>
                 <span onClick={() => navigateTo('/signin')}>Return to Sign in</span>
               </div>

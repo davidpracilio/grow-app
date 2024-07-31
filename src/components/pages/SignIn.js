@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef, useEffect } from "react";
 import '../../App.css';
 import './SignIn.css';
 import AuthContext from '../AuthContext';
@@ -20,6 +20,11 @@ const SignIn = () => {
   const [password, setPassword] = useState('');
   const [session, setSession] = useState(null);
   const [error, setError] = useState(null);
+  const formRef = useRef(null);
+
+  useEffect(() => {
+    formRef.current.email.focus();
+  }, []);
 
   const handleSignIn = async (event) => {
     event.preventDefault();
@@ -50,7 +55,7 @@ const SignIn = () => {
   return (
     <>
       <section className='card'>
-        <form onSubmit={handleSignIn}>
+        <form onSubmit={handleSignIn} ref={formRef}>
           <div className='heading'>Sign in</div>
           <div className="labels">Email</div>
           <input
@@ -74,7 +79,7 @@ const SignIn = () => {
           {error?<div className='account-signinup-error'>{error.message}</div>: null}
           <br/>
           <div className='signinbottom'>
-            <button type='button' className='button-signin' onClick={handleSignIn}>Sign in</button>
+            <button type='submit' className='button-signin'>Sign in</button>
             <div className='account-signup'>
               <span onClick={() => navigateTo('/signup')}>Sign up to Grow!</span>
             </div>
