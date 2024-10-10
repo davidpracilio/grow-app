@@ -30,3 +30,38 @@
   background-color: #F57A5E;
   border-color: #F57A5E;
 }
+
+.button-add {
+  width: 64px;
+  height: 32px;
+  background-color: #FF862F;
+  border: 2px solid #FF862F;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.button-added {
+  width: 64px;
+  height: 32px;
+  background-color: #F6CA78; 
+  border: 2px solid #F6CA78;
+  border-radius: 4px;
+  color: white; 
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.button-added:hover {
+  cursor: default;
+  background-color: #F6CA78;
+  border-color: #F6CA78;
+}
+
+.button-add:hover {
+  cursor: pointer;
+  background-color: #FF9F5C;
+  border-color: #FF9F5C;
+}

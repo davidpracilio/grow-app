@@ -63,6 +63,8 @@ const Task = ({ newTask, task, handleEdit, handleSave, handleExit }) => {
                   <option value=''>Select a category</option>
                   <option value='coding' selected={true ? inputs.category === 'coding' : ''}>Coding</option>
                   <option value='reading' selected={true ? inputs.category === 'reading' : ''}>Reading</option>
+                  <option value='meeting' selected={true ? inputs.category === 'meeting' : ''}>Meeting</option>
+                  <option value='other' selected={true ? inputs.category === 'other' : ''}>Other</option>
                 </select>
                 <div className='subhead'>Website</div>
                 <input

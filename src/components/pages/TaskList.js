@@ -12,6 +12,10 @@ const TaskList = ({ tasks, handleDelete, handleEdit }) => {
         return "category-coding"
       case "reading":
         return "category-reading"
+      case "meeting":
+        return "category-meeting";
+      case "other":
+        return "category-other";
       default:
         break;
     }

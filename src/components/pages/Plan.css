@@ -21,6 +21,11 @@
   display: none;
 }
 
+.task-button {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
 .task {
   margin: 10px;
   width: 274px;
@@ -78,6 +83,22 @@
 
 .task .category-reading {
   color: #79C01E;
+  background-color: #F0FAFF;
+  border: 8px solid #F0FAFF;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.task .category-meeting {
+  color: #F67878;
+  background-color  : #F0FAFF;
+  border: 8px solid #F0FAFF;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.task .category-other {
+  color: #FFB946;
   background-color: #F0FAFF;
   border: 8px solid #F0FAFF;
   font-size: 0.8rem;

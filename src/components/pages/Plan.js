@@ -171,7 +171,8 @@ const Plan = () => {
     <>
       {!showTask && (session) &&
         <div className='taskheading'>
-          <button onClick={handleNewTask}>Add a task</button>
+          <button class='task-button' onClick={handleNewTask}>Add a task</button>
+          {/* <button class='task-button' onClick={handleNewTask}>Add a task</button> */}
         </div>
       }
       {!showTask && (session) &&

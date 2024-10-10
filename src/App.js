@@ -6,6 +6,7 @@ import About from './components/pages/About';
 import Plan from './components/pages/Plan';
 import SignIn from './components/pages/SignIn';
 import SignUp from './components/pages/SignUp';
+import Suggestions from './components/pages/Suggestions';
 import './App.css';
 import AuthContext from './components/AuthContext';
 
@@ -24,6 +25,7 @@ function App() {
             <Route path='/plan' element={<Plan/>} />
             <Route path="/signin" element={<SignIn/>} />
             <Route path="/signup" element={<SignUp/>} />
+            <Route path="/suggestions" element={<Suggestions/>} />
           </Routes>
         </Router>
       </div> 

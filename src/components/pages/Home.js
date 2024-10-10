@@ -8,8 +8,10 @@ import { createClient } from '@supabase/supabase-js'
 export default function Home() {
   const supabase = createClient(process.env.REACT_APP_SUPABASE_URL, process.env.REACT_APP_SUPABASE_KEY);
 
-  const { setIsLoggedIn } = useContext(AuthContext);
+  const {setIsLoggedIn} = useContext(AuthContext);
   const [session, setSession] = useState(null);
+  const [isTextBoxVisible, setIsTextBoxVisible] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const navigate = useNavigate();
 
@@ -27,6 +29,28 @@ export default function Home() {
       }})
   }, []);
 
+  const handleSearch = () => {
+    navigate('/suggestions', { state: { searchTerm } });
+  }
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter' && searchTerm !== '') {
+      handleSearch();
+    }
+  }
+
+  const setTextBoxVisible = () => {
+    if (!session) {
+      setIsTextBoxVisible(false);
+      navigateTo('/signin');
+      return;
+    };
+
+    if (!isTextBoxVisible) {
+      setIsTextBoxVisible(true);
+    }
+  }
+
   return (
     <>
       <section className='banner'>
@@ -38,6 +62,22 @@ export default function Home() {
         <p></p>
         <br/>
         <button type='button' className='button-seeplan' onClick={() => session ? navigateTo('/plan'): navigateTo('/signin')}>See your plan</button>
+        {isTextBoxVisible ? (
+          <div className='input-wrapper'>
+            <i className='fas fa-search'></i>
+            <input 
+              type='text'
+              className='text-suggest'
+              placeholder='Your search term, e.g. JavaScript'
+              value={searchTerm}
+              onChange={(event) => setSearchTerm(event.target.value)}
+              onKeyDown={handleKeyDown}
+            />
+          </div>
+          // to do: rework the onClick below to call a function that will redirect to sign in if not logged in?
+        ) : ( 
+          <button type='button' className='button-suggest' onClick={() => setTextBoxVisible()}>Get suggestions</button>
+        )}
       </section>
     </>
   );
