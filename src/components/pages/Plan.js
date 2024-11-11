@@ -6,6 +6,7 @@ import './Plan.css';
 import { createClient } from '@supabase/supabase-js'
 import AuthContext from '../AuthContext';
 import { useNavigate } from 'react-router-dom';
+import GetSuggestionsButton from '../GetSuggestionsButton';
 
 const Plan = () => {
   const { setIsLoggedIn } = useContext(AuthContext);
@@ -171,8 +172,8 @@ const Plan = () => {
     <>
       {!showTask && (session) &&
         <div className='taskheading'>
-          <button class='task-button' onClick={handleNewTask}>Add a task</button>
-          {/* <button class='task-button' onClick={handleNewTask}>Add a task</button> */}
+          <button className='task-button' onClick={handleNewTask}>Add a task</button>
+          <GetSuggestionsButton session={session} />
         </div>
       }
       {!showTask && (session) &&

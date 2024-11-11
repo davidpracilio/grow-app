@@ -4,6 +4,7 @@ import './Home.css';
 import { useNavigate } from 'react-router-dom';
 import AuthContext from '../AuthContext';
 import { createClient } from '@supabase/supabase-js'
+import GetSuggestionsButton from "../GetSuggestionsButton";
 
 export default function Home() {
   const supabase = createClient(process.env.REACT_APP_SUPABASE_URL, process.env.REACT_APP_SUPABASE_KEY);
@@ -62,7 +63,8 @@ export default function Home() {
         <p></p>
         <br/>
         <button type='button' className='button-seeplan' onClick={() => session ? navigateTo('/plan'): navigateTo('/signin')}>See your plan</button>
-        {isTextBoxVisible ? (
+        <GetSuggestionsButton session={session} />
+        {/* {isTextBoxVisible ? (
           <div className='input-wrapper'>
             <i className='fas fa-search'></i>
             <input 
@@ -74,10 +76,9 @@ export default function Home() {
               onKeyDown={handleKeyDown}
             />
           </div>
-          // to do: rework the onClick below to call a function that will redirect to sign in if not logged in?
         ) : ( 
           <button type='button' className='button-suggest' onClick={() => setTextBoxVisible()}>Get suggestions</button>
-        )}
+        )} */}
       </section>
     </>
   );

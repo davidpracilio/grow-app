@@ -22,9 +22,16 @@
 }
 
 .task-button {
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-right: 18px;
 }
+
+@media screen and (max-width: 900px) {
+  .task-button {
+    margin-right: 0px;
+    margin-bottom: 12px;
+  }
+}
+
 
 .task {
   margin: 10px;
