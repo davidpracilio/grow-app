@@ -1,13 +1,12 @@
 import React, { useContext, useState, useEffect } from "react";
 import '../../App.css';
 import './Home.css';
+import supabase from "../SupabaseClient";
 import { useNavigate } from 'react-router-dom';
 import AuthContext from '../AuthContext';
-import { createClient } from '@supabase/supabase-js'
 import GetSuggestionsButton from "../GetSuggestionsButton";
 
 export default function Home() {
-  const supabase = createClient(process.env.REACT_APP_SUPABASE_URL, process.env.REACT_APP_SUPABASE_KEY);
 
   const {setIsLoggedIn} = useContext(AuthContext);
   const [session, setSession] = useState(null);

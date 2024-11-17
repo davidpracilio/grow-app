@@ -3,7 +3,7 @@ import Task from './Task';
 import TaskList from './TaskList';
 import '../../App.css';
 import './Plan.css';
-import { createClient } from '@supabase/supabase-js'
+import supabase from '../SupabaseClient';
 import AuthContext from '../AuthContext';
 import { useNavigate } from 'react-router-dom';
 import GetSuggestionsButton from '../GetSuggestionsButton';
@@ -16,30 +16,27 @@ const Plan = () => {
   const navigateTo = (path) => {
     navigate(path);
   }
-
-  const supabase = createClient(process.env.REACT_APP_SUPABASE_URL, process.env.REACT_APP_SUPABASE_KEY);
   
   const [session, setSession] = useState(null);
   const [userId, setUserId] = useState(null);
   const [tasks, setTasks] = useState([]);
 
-  fetchData();
+  // fetchData();
 
-  async function fetchData() {
-
-    const userIdFromStorage = localStorage.getItem('userId');
+  const fetchData = async (userId) => {
+    // const userIdFromStorage = localStorage.getItem('userId');
 
     const { data: tasks, error } = await supabase
       .from('user_tasks')
       .select('*')
       .order('id', {ascending: true})
-      .eq('user_id', userIdFromStorage);
+      .eq('user_id', userId);
     if (error) {
       console.log('error', error);
     } else {
       setTasks(tasks);
     }
-  }
+  };
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -53,11 +50,13 @@ const Plan = () => {
         navigateTo('/signin');
       }
     })
-  }, []);
+  }, [setIsLoggedIn, navigateTo]);
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    if (userId) {
+      fetchData(userId);
+    }
+  }, [userId]);
 
   useEffect(() => {
   const userIdFromStorage = localStorage.getItem('userId');
@@ -67,9 +66,8 @@ const Plan = () => {
     fetchData(userIdFromStorage);
   } else {
     setIsLoggedIn(false);
-
   }
-}, []);
+}, [setIsLoggedIn]);
   
   // const [tasks, setTasks] = useState([
   //   {
@@ -116,33 +114,32 @@ const Plan = () => {
   }
 
   const handleDelete = async (id) => {
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from('user_tasks')
       .delete()
       .eq('id', id);
-
     if (error) {
       console.log('error', error);
     } else {
-      fetchData();
+      fetchData(userId);
     }
   }
 
   const handleSave = async (newTask, task) => {
     if (newTask) {
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from('user_tasks')
         .insert({name: task.name, detail: task.detail, category: task.category, status: 'not started', priority: 'low', user_id: userId})
-
+        .eq('user_id', userId);
       if (error) {
         console.log('error', error);
       } else {
-        fetchData();
+        fetchData(userId);
         setNewTask(false);
         setShowTask(false);
       }
     } else {
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from('user_tasks')
         .update({ name: task.name, detail: task.detail, category: task.category, status: task.status })
         .eq('id', task.id);
@@ -150,7 +147,7 @@ const Plan = () => {
       if (error) {
         console.log('error', error);
       } else {
-        fetchData();
+        fetchData(userId);
         setShowTask(false);
       }
     }

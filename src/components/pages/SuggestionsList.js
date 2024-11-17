@@ -3,11 +3,9 @@ import '../../App.css';
 import './Plan.css';
 import './Task.css';
 import './TaskList.css';
-import { createClient } from '@supabase/supabase-js';
+import supabase from '../SupabaseClient';
 
 const SuggestionsList = ({ tasks }) => {
-
-  const supabase = createClient(process.env.REACT_APP_SUPABASE_URL, process.env.REACT_APP_SUPABASE_KEY);
 
   const [tasksWithId, setTasksWithId] = useState([]);
   const [addedTasks, setAddedTasks] = useState({});
@@ -33,7 +31,7 @@ const SuggestionsList = ({ tasks }) => {
 
     const userId = localStorage.getItem('userId');
 
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from('user_tasks')
       .insert([{name: task.title, detail: task.description, category: 'reading', status: 'not started', priority: 'low', user_id: userId}]);
 

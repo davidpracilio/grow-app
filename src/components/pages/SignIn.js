@@ -1,9 +1,9 @@
 import React, { useContext, useState, useRef, useEffect } from "react";
 import '../../App.css';
 import './SignIn.css';
+import supabase from "../SupabaseClient";
 import AuthContext from '../AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { createClient } from '@supabase/supabase-js'
 
 const SignIn = () => {
   const { setIsLoggedIn } = useContext(AuthContext);
@@ -14,11 +14,8 @@ const SignIn = () => {
     navigate(path);
   }
 
-  const supabase = createClient(process.env.REACT_APP_SUPABASE_URL, process.env.REACT_APP_SUPABASE_KEY);
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [session, setSession] = useState(null);
   const [error, setError] = useState(null);
   const formRef = useRef(null);
 

@@ -1,13 +1,12 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from './../images/logo.png';
+import supabase from './SupabaseClient';
 import AuthContext from './AuthContext';
 import './Navbar.css';
-import { createClient } from '@supabase/supabase-js';
 
 const Navbar = () => {
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
-  const supabase = createClient(process.env.REACT_APP_SUPABASE_URL, process.env.REACT_APP_SUPABASE_KEY);
 
   const [click, setClick] = useState(false);
   
