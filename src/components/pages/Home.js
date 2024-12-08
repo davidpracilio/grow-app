@@ -15,10 +15,6 @@ export default function Home() {
 
   const navigate = useNavigate();
 
-  const navigateTo = (path) => {
-    navigate(path)
-  };
-
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
@@ -42,7 +38,7 @@ export default function Home() {
   const setTextBoxVisible = () => {
     if (!session) {
       setIsTextBoxVisible(false);
-      navigateTo('/signin');
+      navigate('/signin');
       return;
     };
 
@@ -61,7 +57,7 @@ export default function Home() {
         </p>
         <p></p>
         <br/>
-        <button type='button' className='button-seeplan' onClick={() => session ? navigateTo('/plan'): navigateTo('/signin')}>See your plan</button>
+        <button type='button' className='button-seeplan' onClick={() => session ? navigate('/plan'): navigate('/signin')}>See your plan</button>
         <GetSuggestionsButton session={session} />
         {/* {isTextBoxVisible ? (
           <div className='input-wrapper'>

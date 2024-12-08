@@ -12,10 +12,6 @@ const Plan = () => {
   const { setIsLoggedIn } = useContext(AuthContext);
 
   const navigate = useNavigate();
-
-  const navigateTo = (path) => {
-    navigate(path);
-  }
   
   const [session, setSession] = useState(null);
   const [userId, setUserId] = useState(null);
@@ -47,10 +43,10 @@ const Plan = () => {
         localStorage.setItem('userId', session.user.id);
       } else {
         setIsLoggedIn(false);
-        navigateTo('/signin');
+        navigate('/signin');
       }
     })
-  }, [setIsLoggedIn, navigateTo]);
+  }, [setIsLoggedIn, navigate]);
 
   useEffect(() => {
     if (userId) {

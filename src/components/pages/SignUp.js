@@ -10,10 +10,6 @@ const SignUp = () => {
 
   const navigate = useNavigate();
 
-  const navigateTo = (path) => {
-    navigate(path);
-  }
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [session, setSession] = useState(null);
@@ -92,7 +88,7 @@ const SignUp = () => {
             <div className='signinbottom'>
               <button type='submit' className='button-signin'>Sign up</button>
               <div className='account-signup'>
-                <span onClick={() => navigateTo('/signin')}>Return to Sign in</span>
+                <span onClick={() => navigate('/signin')}>Return to Sign in</span>
               </div>
             </div>
           </form>
@@ -103,7 +99,7 @@ const SignUp = () => {
           <center>
             <p>Check your email for a confirmation link to sign in.</p>
             <br></br>
-            <button type='button' className='button-seeplan' onClick={() => navigateTo('/signin')}>Sign in</button>
+            <button type='button' className='button-seeplan' onClick={() => navigate('/signin')}>Sign in</button>
           </center>
         </section>
       }

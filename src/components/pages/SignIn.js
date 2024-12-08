@@ -10,10 +10,6 @@ const SignIn = () => {
 
   const navigate = useNavigate();
 
-  const navigateTo = (path) => {
-    navigate(path);
-  }
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
@@ -78,7 +74,7 @@ const SignIn = () => {
           <div className='signinbottom'>
             <button type='submit' className='button-signin'>Sign in</button>
             <div className='account-signup'>
-              <span onClick={() => navigateTo('/signup')}>Sign up to Grow!</span>
+              <span onClick={() => navigate('/signup')}>Sign up to Grow!</span>
             </div>
           </div>
         </form>
